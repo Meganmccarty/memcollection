@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+<head>
+    {% block title %}<title>Megan E. McCarty Collection – {{ specimenrecord.usi }}</title>{% endblock %}
+</head>
+
+{% block content %}
+<div class="container">
+    <h1 class="page-title">Specimen: {{ specimenrecord.usi }}</h1>
+    <hr>
+    {% if specimenrecord.get_genus %}
+        <h2><i>{{ specimenrecord.get_preferred_taxon }}</i> {{ specimenrecord.get_authority }} – {{ specimenrecord.get_common_name }}</h2>
+    {% else %}
+        <h2>{{ specimenrecord.get_family }} {{ specimenrecord.get_authority }} – {{ specimenrecord.get_common_name }}</h2>
+    {% endif %}
+    <div class="cardContainer">
+        {% for copy in specimenrecord.specimenimage_set.all %}
+        <div class="extraLargeCard">
+            <a target="_blank" href="{{ copy.image.url }}">
+                <img class="imageCard" src="{% thumbnail copy.image '900' as im %}{{ im.url }}{% endthumbnail %}"/>
+            </a>
+            <div class="container">
+                <div class="info">
+                    <center>{{ copy.usi_image }} ({{ copy.position }})</center>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="table-container">
+        <div class="flex-table" id="specimen-detail-table">
+            <div class="table-header">
+                <div class="flex-row"><b>Specimen Info</b></div>
+            </div>
+            <div class="table-row">
+                {% if specimenrecord.order %}
+                    <div class="flex-row row-header"><b>Order</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_order }}</div>
+                {% endif %}
+                {% if specimenrecord.family %}
+                    <div class="flex-row row-header"><b>Family</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_family }}</div>
+                {% endif %}
+                {% if specimenrecord.subfamily %}
+                    <div class="flex-row row-header"><b>Subfamily</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_subfamily }}</div>
+                {% endif %}
+                {% if specimenrecord.tribe %}
+                    <div class="flex-row row-header"><b>Tribe</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_tribe }}</div>
+                {% endif %}
+                {% if specimenrecord.genus %}
+                    <div class="flex-row row-header"><b>Genus</b></div>
+                    <div class="flex-row"><i>{{ specimenrecord.get_genus }}</i></div>
+                {% endif %}
+                {% if specimenrecord.species %}
+                    <div class="flex-row row-header"><b>Species</b></div>
+                    <div class="flex-row"><a href="{% url 'species-page' specimenrecord.species.speciespage.title %}"><i>{{ specimenrecord.get_species }}</i></a></div>
+                {% endif %}
+                {% if specimenrecord.subspecies %}
+                    <div class="flex-row row-header"><b>Subspecies</b></div>
+                    <div class="flex-row"><i>{{ specimenrecord.get_subspecies }}</i></div>
+                {% endif %}
+                {% if specimenrecord.authority %}
+                    <div class="flex-row row-header"><b>Authority</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_authority }}</div>
+                {% endif %}
+                {% if specimenrecord.common_name %}
+                    <div class="flex-row row-header"><b>Common Name</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_common_name }}</div>
+                {% endif %}
+                {% if specimenrecord.mona %}
+                    <div class="flex-row row-header"><b>MONA #</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_mona }}</div>
+                {% endif %}
+                {% if specimenrecord.p3 %}
+                    <div class="flex-row row-header"><b>P3 #</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_p3 }}</div>
+                {% endif %}
+                {% if specimenrecord.determiner or specimenrecord.determined_year %}
+                    <div class="flex-row row-header"><b>Determined By</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_determiner }} {{ specimenrecord.get_determined_year }}</div>
+                {% endif %}
+                {% if specimenrecord.sex %}
+                    <div class="flex-row row-header"><b>Sex</b></div>
+                    <div class="flex-row">{{ specimenrecord.sex }}</div>
+                {% endif %}
+                {% if specimenrecord.stage %}
+                    <div class="flex-row row-header"><b>Stage</b></div>
+                    <div class="flex-row">{{ specimenrecord.stage }}</div>
+                {% endif %}
+                {% if specimenrecord.preparation %}
+                    <div class="flex-row row-header"><b>Preparation Type</b></div>
+                    <div class="flex-row">{{ specimenrecord.preparation }}</div>
+                {% endif %}
+                {% if specimenrecord.prepared_date %}
+                    <div class="flex-row row-header"><b>Preparation Date</b></div>
+                    <div class="flex-row">{{ specimenrecord.prepared_date }}</div>
+                {% endif %}
+                {% if specimenrecord.preparer %}
+                    <div class="flex-row row-header"><b>Prepared By</b></div>
+                    <div class="flex-row">{{ specimenrecord.preparer }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="flex-table" id="collecting-event-table">
+            <div class="table-header">
+                <div class="flex-row"><b>Collecting Event</b></div>
+            </div>
+            <div class="table-row">
+                {% if specimenrecord.collecting_trip %}
+                    <div class="flex-row row-header"><b>Collecting Trip</b></div>
+                    <div class="flex-row"><a href="{% url 'collecting-trip-detail' specimenrecord.collecting_trip %}">{{ specimenrecord.get_collecting_trip }}</a></div>
+                {% endif %}
+                {% if specimenrecord.country %}
+                    <div class="flex-row row-header"><b>Country</b></div>
+                    <div class="flex-row">{{ specimenrecord.country.country_name }}</div>
+                {% endif %}
+                {% if specimenrecord.state %}
+                    <div class="flex-row row-header"><b>State</b></div>
+                    <div class="flex-row">{{ specimenrecord.state.state_name }}</div>
+                {% endif %}
+                {% if specimenrecord.county %}
+                    <div class="flex-row row-header"><b>County</b></div>
+                    <div class="flex-row">{{ specimenrecord.county }}</div>
+                {% endif %}
+                {% if specimenrecord.locality %}
+                    <div class="flex-row row-header"><b>Locality</b></div>
+                    <div class="flex-row">{{ specimenrecord.locality }}</div>
+                {% endif %}
+                {% if specimenrecord.gps %}
+                    <div class="flex-row row-header"><b>GPS Coordinates and Elevation</b></div>
+                    <div class="flex-row">{{ specimenrecord.gps }}</div>
+                {% endif %}
+                {% if specimenrecord.get_date %}
+                    <div class="flex-row row-header"><b>Date</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_date }}</div>
+                {% endif %}
+                {% if specimenrecord.display_collector %}
+                    <div class="flex-row row-header"><b>Collector(s)</b></div>
+                    <div class="flex-row">{{ specimenrecord.display_collector }}</div>
+                {% endif %}
+                {% if specimenrecord.method %}
+                    <div class="flex-row row-header"><b>Method</b></div>
+                    <div class="flex-row">{{ specimenrecord.method }}</div>
+                {% endif %}
+                {% if specimenrecord.weather %}
+                    <div class="flex-row row-header"><b>Weather</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_weather }}</div>
+                {% endif %}
+                {% if specimenrecord.temperatureC or specimenrecord.temperatureF %}
+                    <div class="flex-row row-header"><b>Temperature</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_temperatureC }} / {{ specimenrecord.get_temperatureF }}</div>
+                {% endif %}
+                {% if specimenrecord.time_of_day %}
+                    <div class="flex-row row-header"><b>Time of Day</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_time_of_day }}</div>
+                {% endif %}
+                {% if specimenrecord.habitat_notes %}
+                    <div class="flex-row row-header"><b>Habitat Notes</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_habitat_notes | safe }}</div>
+                {% endif %}
+                {% if specimenrecord.other_notes %}
+                    <div class="flex-row row-header"><b>Other Notes</b></div>
+                    <div class="flex-row">{{ specimenrecord.get_other_notes }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if specimenrecord.gps %}
+        <div class="container">
+            <iframe id="google-map" defer src="https://www.google.com/maps/embed/v1/place?&q={{specimenrecord.gps.latitude}}%20{{specimenrecord.gps.longitude}}&key=AIzaSyCzgSeAAuz7Ac8VKaw2XbNKT5Gv8_BFulo" allowfullscreen></iframe>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

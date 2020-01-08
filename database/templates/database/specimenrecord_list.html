@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+<head>
+    {% block title %}<title>Megan E. McCarty Collection – Specimen List</title>{% endblock %}
+</head>
+
+{% block content %}
+    <br>
+    <div class="container" id="top">
+        <h1>Specimens</h1>
+        <hr>
+        <br>
+        <div class="flex-table" id="specimen-table">
+            <div class="table-header">
+                <div class="flex-row first sort" data-sort="usi"><b>Specimen Identifer</b></div>
+                <div class="flex-row second sort" data-sort="order"><b>Order</b></div>
+                <div class="flex-row third sort" data-sort="family"><b>Family</b></div>
+                <div class="flex-row fourth sort" data-sort="species"><b>Species</b></div>
+                <div class="flex-row fifth sort" data-sort="country"><b>Country</b></div>
+                <div class="flex-row sixth sort" data-sort="state"><b>State</b></div>
+                <div class="flex-row seventh sort" data-sort="county"><b>County</b></div>
+                <div class="flex-row eighth sort" data-sort="locality"><b>Locality</b></div>
+                <div class="flex-row ninth sort" data-sort="date"><b>Date</b></div>
+                <div class="flex-row tenth sort" data-sort="collector"><b>Collector(s)</b></div>
+                <div class="flex-row eleventh sort" data-sort="method"><b>Method</b></div>
+            </div>
+            <div class="list">
+            {% for specimenrecord in specimenrecord_list %}
+                <div class="table-row">
+                    <div class="flex-row first usi"><a href="{% url 'specimen-detail' specimenrecord.usi %}">{{ specimenrecord.usi }}</a></div>
+                    <div class="flex-row second order">{{ specimenrecord.get_order }}</div>
+                    <div class="flex-row third family">{{ specimenrecord.get_family }}</div>
+                    <div class="flex-row fourth species">
+                        {% if specimenrecord.get_species %}
+                            <i><a href="{% url 'species-page' specimenrecord.species_page %}">{{ specimenrecord.get_genus }} {{ specimenrecord.get_species }}</a></i>
+                        {% else %}
+                            <i>{{ specimenrecord.get_genus }}</i>
+                        {% endif %}
+                    </div>
+                    <div class="flex-row fifth country">{{ specimenrecord.get_country }}</div>
+                    <div class="flex-row sixth state">{{ specimenrecord.get_state }}</div>
+                    <div class="flex-row seventh county">{{ specimenrecord.get_county }}</div>
+                    <div class="flex-row eighth locality">{{ specimenrecord.get_locality }}</div>
+                    <div class="flex-row ninth date">{{ specimenrecord.get_date }}</div>
+                    <div class="flex-row tenth collector">{{ specimenrecord.display_collector }}</div>
+                    <div class="flex-row eleventh method">{{ specimenrecord.method }}</div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <p>↑<a href="#top">Back to Top</a></p>
+        {% block pagination %}
+            {% if is_paginated %}
+            <div class="container">
+                <div class = "col-md-6">
+                    <ul class="pagination">
+                        <li class="page-item">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1"><button class="previous">‹‹</button></a>
+                            <a href="?page={{ page_obj.previous_page_number }}"><button class="previous">‹</button></a>
+                        {% endif %}
+                        </li>
+
+                    {% for page in page_obj.paginator.page_range %}
+                        <li class="page-item">
+                            {% if page_obj.number == page %}
+                                <a class ="page_number" href="?page={{page}}"><button class="pg active">{{page}}</button></a>
+                            {% elif page > page_obj.number|add:'-5' and page < page_obj.number|add:'5' %}
+                                <a class ="page_number"href="?page={{page}}"><button class="pg">{{page}}</button></a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+
+                        <li class="page-item">
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}"><button class="next">›</button></a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}"><button class="next">››</button></a>
+                        {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+        {% endblock %}
+    </div>
+    <br>
+    <br>
+{% endblock %}

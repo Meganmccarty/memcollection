@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+<head>
+    {% block title %}<title>Megan E. McCarty Collection – Species</title>{% endblock %}
+</head>
+
+{% block content %}
+<div class="container" id="top">
+    <h1 class="page-title">Species</h1>
+    <hr>
+    <div id="contents">
+        <h5>Navigation</h5>
+        <p><a href="#lepidoptera"><b>Lepidoptera</b></a></p>
+        <p><a href="#hesperiidae"><b>Hesperiidae</b></a>: <a href="#eudaminae">Eudaminae</a> • <a href="#pyrginae">Pyrginae</a> • <a href="#heteropterinae">Heteropterinae</a> • <a href="#hesperiinae">Hesperiinae</a></p>
+        <p><a href="#papilionidae"><b>Papilionidae</b></a>: <a href="#parnassiinae">Parnassiinae</a> • <a href="#papilioninae">Papilioninae</a></p>
+        <p><a href="#pieridae"><b>Pieridae</b></a>: <a href="#coliadinae">Coliadinae</a> • <a href="#pierinae">Pierinae</a></p>
+        <p><a href="#lycaenidae"><b>Lycaenidae</b></a>: <a href="#miletinae">Miletinae</a> • <a href="#lycaeninae">Lycaeninae</a> • <a href="#theclinae">Theclinae</a> • <a href="#polyommatinae">Polyommatinae</a></p>
+        <!--<p><a href="#riodinidae"><b>Riodinidae</b></a>: <a href="#riodininae">Riodininae</a></p>
+        <p><a href="#nymphalidae"><b>Nymphalidae</b></a>: <a href="#libytheinae">Libytheinae</a> • <a href="#danainae">Danainae</a> • <a href="#heliconiinae">Heliconiinae</a> • <a href="#limenitidinae">Limenitidinae</a> • <a href="#apaturinae">Apaturinae</a> • <a href="#nymphalinae">Nymphalinae</a> • <a href="#charaxinae">Charaxinae</a> • <a href="#satyrinae">Satyrinae</a></p>-->
+    </div>
+    <center><h3 class="section-title" id="lepidoptera">Order: Lepidoptera</h3></center>
+    <center><h4 class="subsection-title" id="hesperiidae">Family: Hesperiidae Latreille, 1809</h4></center>
+    <center><h5 class="subsection-title" id="eudaminae">Subfamily: Eudaminae Mabille, 1877</h5></center>
+    <div class="flex-table species-page-table" id="eudaminae-page-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="species-page"><b>Species</b></div>
+            <div class="flex-row second sort" data-sort="authority"><b>Authority</b></div>
+            <div class="flex-row third sort" data-sort="common-name"><b>Common Name</b></div>
+            <div class="flex-row fourth sort" data-sort="mona"><b>MONA #</b></div>
+            <div class="flex-row fifth sort" data-sort="p3"><b>P3 #</b></div>
+        </div>
+        <div class="list">
+            {% for speciespage in eudaminae_pages %}
+            <div class="table-row">
+                <div class="flex-row first species-page"><a href="{% url 'species-page' speciespage.title %}"><i>{{ speciespage.title }}</i></a></div>
+                <div class="flex-row second authority">{{ speciespage.species_name.species_authority }}</div>
+                <div class="flex-row third common-name">{{ speciespage.species_name.species_common_name }}</div>
+                <div class="flex-row fourth mona">{{ speciespage.species_name.species_mona }}</div>
+                <div class="flex-row fifth p3">{{ speciespage.species_name.species_p3 }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p>↑<a href="#top">Back to Top</a></p>
+    <center><h5 class="subsection-title" id="pyrginae">Subfamily: Pyrginae Burmeister, 1878</h5></center>
+    <div class="flex-table species-page-table" id="pyrginae-page-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="species-page"><b>Species</b></div>
+            <div class="flex-row second sort" data-sort="authority"><b>Authority</b></div>
+            <div class="flex-row third sort" data-sort="common-name"><b>Common Name</b></div>
+            <div class="flex-row fourth sort" data-sort="mona"><b>MONA #</b></div>
+            <div class="flex-row fifth sort" data-sort="p3"><b>P3 #</b></div>
+        </div>
+        <div class="list">
+            {% for speciespage in pyrginae_pages %}
+            <div class="table-row">
+                <div class="flex-row first species-page"><a href="{% url 'species-page' speciespage.title %}"><i>{{ speciespage.title }}</i></a></div>
+                <div class="flex-row second authority">{{ speciespage.species_name.species_authority }}</div>
+                <div class="flex-row third common-name">{{ speciespage.species_name.species_common_name }}</div>
+                <div class="flex-row fourth mona">{{ speciespage.species_name.species_mona }}</div>
+                <div class="flex-row fifth p3">{{ speciespage.species_name.species_p3 }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p>↑<a href="#top">Back to Top</a></p>
+    <center><h5 class="subsection-title" id="heteropterinae">Subfamily: Heteropterinae Aurivillius, 1925</h5></center>
+    <div class="flex-table species-page-table" id="heteropterinae-page-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="species-page"><b>Species</b></div>
+            <div class="flex-row second sort" data-sort="authority"><b>Authority</b></div>
+            <div class="flex-row third sort" data-sort="common-name"><b>Common Name</b></div>
+            <div class="flex-row fourth sort" data-sort="mona"><b>MONA #</b></div>
+            <div class="flex-row fifth sort" data-sort="p3"><b>P3 #</b></div>
+        </div>
+        <div class="list">
+            {% for speciespage in heteropterinae_pages %}
+            <div class="table-row">
+                <div class="flex-row first species-page"><a href="{% url 'species-page' speciespage.title %}"><i>{{ speciespage.title }}</i></a></div>
+                <div class="flex-row second authority">{{ speciespage.species_name.species_authority }}</div>
+                <div class="flex-row third common-name">{{ speciespage.species_name.species_common_name }}</div>
+                <div class="flex-row fourth mona">{{ speciespage.species_name.species_mona }}</div>
+                <div class="flex-row fifth p3">{{ speciespage.species_name.species_p3 }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p>↑<a href="#top">Back to Top</a></p>
+    <center><h5 class="subsection-title" id="hesperiinae">Subfamily: Hesperiinae Latreille, 1809</h5></center>
+    <div class="flex-table species-page-table" id="hesperiinae-page-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="species-page"><b>Species</b></div>
+            <div class="flex-row second sort" data-sort="authority"><b>Authority</b></div>
+            <div class="flex-row third sort" data-sort="common-name"><b>Common Name</b></div>
+            <div class="flex-row fourth sort" data-sort="mona"><b>MONA #</b></div>
+            <div class="flex-row fifth sort" data-sort="p3"><b>P3 #</b></div>
+        </div>
+        <div class="list">
+            {% for speciespage in hesperiinae_pages %}
+            <div class="table-row">
+                <div class="flex-row first species-page"><a href="{% url 'species-page' speciespage.title %}"><i>{{ speciespage.title }}</i></a></div>
+                <div class="flex-row second authority">{{ speciespage.species_name.species_authority }}</div>
+                <div class="flex-row third common-name">{{ speciespage.species_name.species_common_name }}</div>
+                <div class="flex-row fourth mona">{{ speciespage.species_name.species_mona }}</div>
+                <div class="flex-row fifth p3">{{ speciespage.species_name.species_p3 }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p>↑<a href="#top">Back to Top</a></p>
+    <center><h4 class="subsection-title" id="papilionidae">Family: Papilionidae Latreille, [1802]</h4></center>
+    <center><h5 class="subsection-title" id="parnassiinae">Subfamily Parnassiinae Duponchel, [1835]</h5></center>
+    <div class="flex-table species-page-table" id="parnassiinae-page-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="species-page"><b>Species</b></div>
+            <div class="flex-row second sort" data-sort="authority"><b>Authority</b></div>
+            <div class="flex-row third sort" data-sort="common-name"><b>Common Name</b></div>
+            <div class="flex-row fourth sort" data-sort="mona"><b>MONA #</b></div>
+            <div class="flex-row fifth sort" data-sort="p3"><b>P3 #</b></div>
+        </div>
+        <div class="list">
+            {% for speciespage in parnassiinae_pages %}
+            <div class="table-row">
+                <div class="flex-row first species-page"><a href="{% url 'species-page' speciespage.title %}"><i>{{ speciespage.title }}</i></a></div>
+                <div class="flex-row second authority">{{ speciespage.species_name.species_authority }}</div>
+                <div class="flex-row third common-name">{{ speciespage.species_name.species_common_name }}</div>
+                <div class="flex-row fourth mona">{{ speciespage.species_name.species_mona }}</div>
+                <div class="flex-row fifth p3">{{ speciespage.species_name.species_p3 }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p>↑<a href="#top">Back to Top</a></p>
+    <center><h5 class="subsection-title" id="papilioninae">Subfamily Papilioninae Latreille, [1802]</h5></center>
+    <div class="flex-table species-page-table" id="papilioninae-page-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="species-page"><b>Species</b></div>
+            <div class="flex-row second sort" data-sort="authority"><b>Authority</b></div>
+            <div class="flex-row third sort" data-sort="common-name"><b>Common Name</b></div>
+            <div class="flex-row fourth sort" data-sort="mona"><b>MONA #</b></div>
+            <div class="flex-row fifth sort" data-sort="p3"><b>P3 #</b></div>
+        </div>
+        <div class="list">
+            {% for speciespage in papilioninae_pages %}
+            <div class="table-row">
+                <div class="flex-row first species-page"><a href="{% url 'species-page' speciespage.title %}"><i>{{ speciespage.title }}</i></a></div>
+                <div class="flex-row second authority">{{ speciespage.species_name.species_authority }}</div>
+                <div class="flex-row third common-name">{{ speciespage.species_name.species_common_name }}</div>
+                <div class="flex-row fourth mona">{{ speciespage.species_name.species_mona }}</div>
+                <div class="flex-row fifth p3">{{ speciespage.species_name.species_p3 }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p>↑<a href="#top">Back to Top</a></p>
+    <center><h4 class="subsection-title" id="pieridae">Family: Pieridae Swainson, 1820</h4></center>
+    <center><h5 class="subsection-title" id="coliadinae">Subfamily: Coliadinae Swainson, 1821</h5></center>
+    <div class="flex-table species-page-table" id="coliadinae-page-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="species-page"><b>Species</b></div>
+            <div class="flex-row second sort" data-sort="authority"><b>Authority</b></div>
+            <div class="flex-row third sort" data-sort="common-name"><b>Common Name</b></div>
+            <div class="flex-row fourth sort" data-sort="mona"><b>MONA #</b></div>
+            <div class="flex-row fifth sort" data-sort="p3"><b>P3 #</b></div>
+        </div>
+        <div class="list">
+            {% for speciespage in coliadinae_pages %}
+            <div class="table-row">
+                <div class="flex-row first species-page"><a href="{% url 'species-page' speciespage.title %}"><i>{{ speciespage.title }}</i></a></div>
+                <div class="flex-row second authority">{{ speciespage.species_name.species_authority }}</div>
+                <div class="flex-row third common-name">{{ speciespage.species_name.species_common_name }}</div>
+                <div class="flex-row fourth mona">{{ speciespage.species_name.species_mona }}</div>
+                <div class="flex-row fifth p3">{{ speciespage.species_name.species_p3 }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p>↑<a href="#top">Back to Top</a></p>
+    <center><h5 class="subsection-title" id="pierinae">Subfamily: Pierinae Swainson, 1820</h5></center>
+    <div class="flex-table species-page-table" id="pierinae-page-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="species-page"><b>Species</b></div>
+            <div class="flex-row second sort" data-sort="authority"><b>Authority</b></div>
+            <div class="flex-row third sort" data-sort="common-name"><b>Common Name</b></div>
+            <div class="flex-row fourth sort" data-sort="mona"><b>MONA #</b></div>
+            <div class="flex-row fifth sort" data-sort="p3"><b>P3 #</b></div>
+        </div>
+        <div class="list">
+            {% for speciespage in pierinae_pages %}
+            <div class="table-row">
+                <div class="flex-row first species-page"><a href="{% url 'species-page' speciespage.title %}"><i>{{ speciespage.title }}</i></a></div>
+                <div class="flex-row second authority">{{ speciespage.species_name.species_authority }}</div>
+                <div class="flex-row third common-name">{{ speciespage.species_name.species_common_name }}</div>
+                <div class="flex-row fourth mona">{{ speciespage.species_name.species_mona }}</div>
+                <div class="flex-row fifth p3">{{ speciespage.species_name.species_p3 }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p>↑<a href="#top">Back to Top</a></p>
+    <center><h4 class="subsection-title" id="lycaenidae">Family: Lycaenidae [Leach], [1815]</h4></center>
+    <center><h5 class="subsection-title" id="miletinae">Subfamily: Miletinae Reuter, 1896</h5></center>
+    <div class="flex-table species-page-table" id="miletinae-page-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="species-page"><b>Species</b></div>
+            <div class="flex-row second sort" data-sort="authority"><b>Authority</b></div>
+            <div class="flex-row third sort" data-sort="common-name"><b>Common Name</b></div>
+            <div class="flex-row fourth sort" data-sort="mona"><b>MONA #</b></div>
+            <div class="flex-row fifth sort" data-sort="p3"><b>P3 #</b></div>
+        </div>
+        <div class="list">
+            {% for speciespage in miletinae_pages %}
+            <div class="table-row">
+                <div class="flex-row first species-page"><a href="{% url 'species-page' speciespage.title %}"><i>{{ speciespage.title }}</i></a></div>
+                <div class="flex-row second authority">{{ speciespage.species_name.species_authority }}</div>
+                <div class="flex-row third common-name">{{ speciespage.species_name.species_common_name }}</div>
+                <div class="flex-row fourth mona">{{ speciespage.species_name.species_mona }}</div>
+                <div class="flex-row fifth p3">{{ speciespage.species_name.species_p3 }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p>↑<a href="#top">Back to Top</a></p>
+    <center><h5 class="subsection-title" id="lycaeninae">Subfamily: Lycaeninae [Leach], [1815]</h5></center>
+    <div class="flex-table species-page-table" id="lycaeninae-page-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="species-page"><b>Species</b></div>
+            <div class="flex-row second sort" data-sort="authority"><b>Authority</b></div>
+            <div class="flex-row third sort" data-sort="common-name"><b>Common Name</b></div>
+            <div class="flex-row fourth sort" data-sort="mona"><b>MONA #</b></div>
+            <div class="flex-row fifth sort" data-sort="p3"><b>P3 #</b></div>
+        </div>
+        <div class="list">
+            {% for speciespage in lycaeninae_pages %}
+            <div class="table-row">
+                <div class="flex-row first species-page"><a href="{% url 'species-page' speciespage.title %}"><i>{{ speciespage.title }}</i></a></div>
+                <div class="flex-row second authority">{{ speciespage.species_name.species_authority }}</div>
+                <div class="flex-row third common-name">{{ speciespage.species_name.species_common_name }}</div>
+                <div class="flex-row fourth mona">{{ speciespage.species_name.species_mona }}</div>
+                <div class="flex-row fifth p3">{{ speciespage.species_name.species_p3 }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p>↑<a href="#top">Back to Top</a></p>
+    <center><h5 class="subsection-title" id="theclinae">Subfamily: Theclinae Swainson, 1831</h5></center>
+    <div class="flex-table species-page-table" id="theclinae-page-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="species-page"><b>Species</b></div>
+            <div class="flex-row second sort" data-sort="authority"><b>Authority</b></div>
+            <div class="flex-row third sort" data-sort="common-name"><b>Common Name</b></div>
+            <div class="flex-row fourth sort" data-sort="mona"><b>MONA #</b></div>
+            <div class="flex-row fifth sort" data-sort="p3"><b>P3 #</b></div>
+        </div>
+        <div class="list">
+            {% for speciespage in theclinae_pages %}
+            <div class="table-row">
+                <div class="flex-row first species-page"><a href="{% url 'species-page' speciespage.title %}"><i>{{ speciespage.title }}</i></a></div>
+                <div class="flex-row second authority">{{ speciespage.species_name.species_authority }}</div>
+                <div class="flex-row third common-name">{{ speciespage.species_name.species_common_name }}</div>
+                <div class="flex-row fourth mona">{{ speciespage.species_name.species_mona }}</div>
+                <div class="flex-row fifth p3">{{ speciespage.species_name.species_p3 }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p>↑<a href="#top">Back to Top</a></p>
+    <center><h5 class="subsection-title" id="polyommatinae">Subfamily: Polyommatinae Swainson, 1827</h5></center>
+    <div class="flex-table species-page-table" id="polyommatinae-page-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="species-page"><b>Species</b></div>
+            <div class="flex-row second sort" data-sort="authority"><b>Authority</b></div>
+            <div class="flex-row third sort" data-sort="common-name"><b>Common Name</b></div>
+            <div class="flex-row fourth sort" data-sort="mona"><b>MONA #</b></div>
+            <div class="flex-row fifth sort" data-sort="p3"><b>P3 #</b></div>
+        </div>
+        <div class="list">
+            {% for speciespage in polyommatinae_pages %}
+            <div class="table-row">
+                <div class="flex-row first species-page"><a href="{% url 'species-page' speciespage.title %}"><i>{{ speciespage.title }}</i></a></div>
+                <div class="flex-row second authority">{{ speciespage.species_name.species_authority }}</div>
+                <div class="flex-row third common-name">{{ speciespage.species_name.species_common_name }}</div>
+                <div class="flex-row fourth mona">{{ speciespage.species_name.species_mona }}</div>
+                <div class="flex-row fifth p3">{{ speciespage.species_name.species_p3 }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p>↑<a href="#top">Back to Top</a></p>
+</div>
+{% endblock %}

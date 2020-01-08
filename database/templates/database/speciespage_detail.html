@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+<head>
+    {% block title %}<title>Megan E. McCarty Collection – {{ speciespage.title }}</title>{% endblock %}
+</head>
+
+{% block content %}
+<div class="container">
+    <h1 class="page-title"><i>{{ speciespage.title }}</i> {{ speciespage.species_name.species_authority }} – {{ speciespage.species_name.species_common_name }}</h1>
+    <hr>
+    <div id="speciespage-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+        {% for copy in speciespage.speciesimage_set.all %}
+            <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                <img class="d-block w-100" src="{% thumbnail copy.image '1920' as im %}{{ im.url }}{% endthumbnail %}" alt=""
+                    srcset="{% thumbnail copy.image '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                        {% thumbnail copy.image '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                        {% thumbnail copy.image '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                        {% thumbnail copy.image '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                        {% thumbnail copy.image '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                    alt=""
+                    sizes="100vw"
+                />
+                <div class="carousel-caption">
+                    <p>{{ copy.caption | safe }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#speciespage-carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#speciespage-carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div id="contents">
+        <h5>Navigation</h5>
+        <p><a href="#taxonomy">Taxonomy</a> • <a href="#description">Description</a> • <a href="#similar_species">Similar Species</a> • <a href="#distribution">Distribution</a> • <a href="#habitat">Habitat</a> • <a href="#seasonality">Seasonality</a> • <a href="#host_plants">Host Plants</a> • <a href="#adult_food">Adult Food Sources</a> • <a href="#behavior">Behavior</a> • <a href="#ecology">Ecology</a> • <a href="#life_cycle">Life Cycle</a> • <a href="#references">References</a></p>
+    </div>
+    <h3 class="section-title" id="taxonomy">Taxonomy</h3>
+    {{ speciespage.taxonomy | safe }}
+    <hr>
+    <h3 class="section-title" id="description">Description</h3>
+    {{ speciespage.description | safe }}
+    <h5 class="subsection-title">Specimens in the Collection</h5>
+    <div class="flex-table" id="specimen-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="usi"><b>Specimen Identifer</b></div>
+            <div class="flex-row second sort" data-sort="order"><b>Order</b></div>
+            <div class="flex-row third sort" data-sort="family"><b>Family</b></div>
+            <div class="flex-row fourth sort" data-sort="species"><b>Species</b></div>
+            <div class="flex-row fifth sort" data-sort="country"><b>Country</b></div>
+            <div class="flex-row sixth sort" data-sort="state"><b>State</b></div>
+            <div class="flex-row seventh sort" data-sort="county"><b>County</b></div>
+            <div class="flex-row eighth sort" data-sort="locality"><b>Locality</b></div>
+            <div class="flex-row ninth sort" data-sort="date"><b>Date</b></div>
+            <div class="flex-row tenth sort" data-sort="collector"><b>Collector(s)</b></div>
+            <div class="flex-row eleventh sort" data-sort="method"><b>Method</b></div>
+        </div>
+        <div class="list">
+        {% for copy in speciespage.specimenrecord_set.all %}
+            <div class="table-row">
+                <div class="flex-row first usi"><a href="{% url 'specimen-detail' copy.usi %}">{{ copy.usi }}</a></div>
+                <div class="flex-row second order">{{ copy.get_order }}</div>
+                <div class="flex-row third family">{{ copy.get_family }}</div>
+                <div class="flex-row fourth species">
+                    {% if copy.get_subspecies %}
+                        <i>{{ copy.get_genus }} {{ copy.get_species }} {{ copy.get_subspecies }}</i>
+                    {% elif copy.get_species %}
+                        <i>{{ copy.get_genus }} {{ copy.get_species }}</i>
+                    {% else %}
+                        <i>{{ copy.get_genus }}</i>
+                    {% endif %}
+                </div>
+                <div class="flex-row fifth country">{{ copy.get_country }}</div>
+                <div class="flex-row sixth state">{{ copy.get_state }}</div>
+                <div class="flex-row seventh county">{{ copy.get_county }}</div>
+                <div class="flex-row eighth locality">{{ copy.get_locality }}</div>
+                <div class="flex-row ninth date">{{ copy.get_date }}</div>
+                <div class="flex-row tenth collector">{{ copy.display_collector }}</div>
+                <div class="flex-row eleventh method">{{ copy.method }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        <div class="cardContainer">
+        {% for copy in speciespage.specimenimage_set.all %}
+            <div class="smallCard">
+                <a href="{% url 'specimen-detail' copy.usi_image %}">
+                    <img class="imageCard" src="{% thumbnail copy.image '1920' as im %}{{ im.url }}{% endthumbnail %}" alt="{{ copy.usi_image }}"
+                        srcset="{% thumbnail copy.image '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                        alt="{{ copy.usi_image }}"
+                        sizes="100vw"
+                    />
+                </a>
+                <div class="container">
+                    <div class="info">
+                        <center><a href="{% url 'specimen-detail' copy.usi_image %}">{{ copy.usi_image }}</a> ({{ copy.position }})</center>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    <hr>
+    <h3 class="section-title" id="similar_species">Similar Species</h3>
+    {{ speciespage.similar_species | safe }}
+    <hr>
+    <h3 class="section-title" id="distribution">Distribution</h3>
+    <div class="container">
+        <div class="cardContainer">
+        {% for copy in speciespage.mapimage_set.all %}
+            <div class="mapCard">
+                <a target="_blank" href="{{ copy.image.url }}">
+                    <img class="imageCard" src="{% thumbnail copy.image '1920' as im %}{{ im.url }}{% endthumbnail %}" alt="{{ copy.caption }}"
+                        srcset="{% thumbnail copy.image '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                        alt="{{ copy.caption }}"
+                        sizes="100vw"
+                    />
+                </a>
+                <div class="container">
+                    <div class="info">
+                        {{ copy.caption | safe }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    {{ speciespage.distribution | safe }}
+    <hr>
+    <h3 class="section-title" id="habitat">Habitat</h3>
+    <div class="container">
+        <div class="cardContainer">
+        {% for copy in speciespage.habitatimage_set.all %}
+            <div class="smallCard">
+                <a target="_blank" href="{{ copy.image.url }}">
+                    <img class="imageCard" src="{% thumbnail copy.image '1920' as im %}{{ im.url }}{% endthumbnail %}" alt="{{ copy.caption }}"
+                        srcset="{% thumbnail copy.image '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                        alt="{{ copy.caption }}"
+                        sizes="100vw"
+                    />
+                </a>
+                <div class="container">
+                    <div class="info">
+                        {{ copy.caption | safe }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    {{ speciespage.habitat | safe }}
+    <hr>
+    <h3 class="section-title" id="seasonality">Seasonality</h3>
+    {{ speciespage.seasonality | safe }}
+    <hr>
+    <h3 class="section-title" id="host_plants">Host Plants</h3>
+    <div class="container">
+        <div class="cardContainer">
+        {% for copy in speciespage.hostplantimage_set.all %}
+            <div class="smallCard">
+                <a target="_blank" href="{{ copy.image.url }}">
+                    <img class="imageCard" src="{% thumbnail copy.image '1920' as im %}{{ im.url }}{% endthumbnail %}" alt="{{ copy.caption }}"
+                        srcset="{% thumbnail copy.image '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                        alt="{{ copy.caption }}"
+                        sizes="100vw"
+                    />
+                </a>
+                <div class="container">
+                    <div class="info">
+                        {{ copy.caption | safe }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    {{ speciespage.host_plants | safe }}
+    <hr>
+    <h3 class="section-title" id="adult_food">Adult Food Sources</h3>
+    <div class="container">
+        <div class="cardContainer">
+        {% for copy in speciespage.adultfoodimage_set.all %}
+            <div class="smallCard">
+                <a target="_blank" href="{{ copy.image.url }}">
+                    <img class="imageCard" src="{% thumbnail copy.image '1920' as im %}{{ im.url }}{% endthumbnail %}" alt="{{ copy.caption }}"
+                        srcset="{% thumbnail copy.image '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                        alt="{{ copy.caption }}"
+                        sizes="100vw"
+                    />
+                </a>
+                <div class="container">
+                    <div class="info">
+                        {{ copy.caption | safe }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    {{ speciespage.adult_food | safe }}
+    <hr>
+    <h3 class="section-title" id="behavior">Behavior</h3>
+    {{ speciespage.behavior | safe }}
+    <hr>
+    <h3 class="section-title" id="ecology">Ecology</h3>
+    <div class="container">
+        <div class="cardContainer">
+        {% for copy in speciespage.predatorimage_set.all %}
+            <div class="smallCard">
+                <a target="_blank" href="{{ copy.image.url }}">
+                    <img class="imageCard" src="{% thumbnail copy.image '1920' as im %}{{ im.url }}{% endthumbnail %}" alt="{{ copy.caption }}"
+                        srcset="{% thumbnail copy.image '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                        alt="{{ copy.caption }}"
+                        sizes="100vw"
+                    />
+                </a>
+                <div class="container">
+                    <div class="info">
+                        {{ copy.caption | safe }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    {{ speciespage.ecology | safe }}
+    <hr>
+    <h3 class="section-title" id="life_cycle">Life Cycle</h3>
+    <div class="container">
+        <div class="cardContainer">
+        {% for copy in speciespage.immatureimage_set.all %}
+            <div class="smallCard">
+                <a target="_blank" href="{{ copy.image.url }}">
+                    <img class="imageCard" src="{% thumbnail copy.image '1920' as im %}{{ im.url }}{% endthumbnail %}" alt="{{ copy.caption }}"
+                        srcset="{% thumbnail copy.image '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                        alt="{{ copy.caption }}"
+                        sizes="100vw"
+                    />
+                </a>
+                <div class="container">
+                    <div class="info">
+                        {{ copy.caption | safe }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    {{ speciespage.life_cycle | safe }}
+    <hr>
+    <h3 class="section-title" id="references">References</h3>
+    {{ speciespage.references | safe }}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+<head>
+    {% block title %}<title>Megan E. McCarty Collection – Collecting Trips</title>{% endblock %}
+</head>
+
+{% block content %}
+<div class="container">
+    <h1 class="page-title">Collecting Trips</h1>
+    <hr>
+    <p>Clicking on the table headers sorts the columns in ascending/descending order.</p>
+    <div class="flex-table" id="collecting-trip-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="trip-name"><b>Trip Name</b></div>
+            <div class="flex-row second sort" data-sort="start-date"><b>Start Date</b></div>
+            <div class="flex-row third sort" data-sort="end-date"><b>End Date</b></div>
+        </div>
+        <div class="list">
+            {% for collectingtrip in collectingtrip_list %}
+            <div class="table-row">
+                <div class="flex-row first trip-name"><a href="{% url 'collecting-trip-detail' collectingtrip.trip_name %}">{{ collectingtrip.trip_name }}</a></a></div>
+                <div class="flex-row second start-date">{{ collectingtrip.start_date }}</div>
+                <div class="flex-row third end-date">{{ collectingtrip.end_date }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

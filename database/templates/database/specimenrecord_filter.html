@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+<head>
+    {% block title %}<title>Megan E. McCarty Collection – Specimen Records</title>{% endblock %}
+</head>
+
+{% block content %}
+<div class="container">
+    <div id="specimen-table">
+        <h1 class="page-title">Specimen Records</h1>
+        <hr>
+        <p>Toggle the filter and use the fields to filter through all of the specimens in the collection database. The results will update in the table below.</p>
+        <p>Use the search box to find something specific in the table. The results will update as you type.</p>
+        <p>Clicking on the table headers sorts the columns in ascending/descending order.</p>
+        <div id="search-button">
+            <input class="search" placeholder="Search" />
+            <button class="btn btn-primary" id="toggle-filter" type="button" data-toggle="collapse" data-target="#specimenfilter" aria-expanded="false" aria-controls="specimenfilter">
+                Toggle Filter
+            </button>
+        </div>
+        <form method="get" class="collapse" id="specimenfilter">
+            <div class="form-row">
+                <div class="form-cell" id="form-usi">
+                    {{ filter.form.usi.label_tag }}
+                    {% render_field filter.form.usi class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-order">
+                    {{ filter.form.order.label_tag }}
+                    {% render_field filter.form.order class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-family">
+                    {{ filter.form.family.label_tag }}
+                    {% render_field filter.form.family class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-subfamily">
+                    {{ filter.form.subfamily.label_tag }}
+                    {% render_field filter.form.subfamily class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-tribe">
+                    {{ filter.form.tribe.label_tag }}
+                    {% render_field filter.form.tribe class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-genus">
+                    {{ filter.form.genus.label_tag }}
+                    {% render_field filter.form.genus class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-species">
+                    {{ filter.form.species.label_tag }}
+                    {% render_field filter.form.species class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-subspecies">
+                    {{ filter.form.subspecies.label_tag }}
+                    {% render_field filter.form.subspecies class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-common-name">
+                    {{ filter.form.common_name.label_tag }}
+                    {% render_field filter.form.common_name class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-determiner">
+                    {{ filter.form.determiner.label_tag }}
+                    {% render_field filter.form.determiner class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-determined-year">
+                    {{ filter.form.determined_year.label_tag }}
+                    {% render_field filter.form.determined_year class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-mona">
+                    {{ filter.form.mona.label_tag }}
+                    {% render_field filter.form.mona class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-p3">
+                    {{ filter.form.p3.label_tag }}
+                    {% render_field filter.form.p3 class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-sex">
+                    {{ filter.form.sex.label_tag }}
+                    {% render_field filter.form.sex class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-stage">
+                    {{ filter.form.stage.label_tag }}
+                    {% render_field filter.form.stage class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-preparer">
+                    {{ filter.form.preparer.label_tag }}
+                    {% render_field filter.form.preparer class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-preparation">
+                    {{ filter.form.preparation.label_tag }}
+                    {% render_field filter.form.preparation class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-preparation-date">
+                    {{ filter.form.preparation_date.label_tag }}
+                    {% render_field filter.form.preparation_date class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-collecting-trip">
+                    {{ filter.form.collecting_trip.label_tag }}
+                    {% render_field filter.form.collecting_trip class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-country">
+                    {{ filter.form.country.label_tag }}
+                    {% render_field filter.form.country class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-state">
+                    {{ filter.form.state.label_tag }}
+                    {% render_field filter.form.state class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-county">
+                    {{ filter.form.county.label_tag }}
+                    {% render_field filter.form.county class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-locality">
+                    {{ filter.form.locality.label_tag }}
+                    {% render_field filter.form.locality class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-gps">
+                    {{ filter.form.gps.label_tag }}
+                    {% render_field filter.form.gps class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-day">
+                    {{ filter.form.day.label_tag }}
+                    {% render_field filter.form.day class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-month">
+                    {{ filter.form.month.label_tag }}
+                    {% render_field filter.form.month class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-year">
+                    {{ filter.form.year.label_tag }}
+                    {% render_field filter.form.year class="form-control" %}
+                </div>
+                <div id="form-collector-box">
+                    <div id="form-collector">
+                        {{ filter.form.collector.label_tag }}
+                        <div>
+                            {% for choice in filter.form.collector %}
+                                <label class="checkbox-inline">
+                                    {{ choice.tag }} {{ choice.choice_label }}
+                                </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-cell" id="form-method">
+                    {{ filter.form.method.label_tag }}
+                    {% render_field filter.form.method class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-weather">
+                    {{ filter.form.weather.label_tag }}
+                    {% render_field filter.form.weather class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-temperatureC">
+                    {{ filter.form.temperatureC.label_tag }}
+                    {% render_field filter.form.temperatureC class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-temperatureF">
+                    {{ filter.form.temperatureF.label_tag }}
+                    {% render_field filter.form.temperatureF class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-time-of-day">
+                    {{ filter.form.time_of_day.label_tag }}
+                    {% render_field filter.form.time_of_day class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-habitat-notes">
+                    {{ filter.form.habitat_notes.label_tag }}
+                    {% render_field filter.form.habitat_notes class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-other-notes">
+                    {{ filter.form.other_notes.label_tag }}
+                    {% render_field filter.form.other_notes class="form-control" %}
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-search"></span> Filter
+                </button>
+            </div>
+        </form>
+        <div class="flex-table">
+            <div class="table-header">
+                <div class="flex-row first sort" data-sort="usi"><b>Specimen Identifer</b></div>
+                <div class="flex-row second sort" data-sort="order"><b>Order</b></div>
+                <div class="flex-row third sort" data-sort="family"><b>Family</b></div>
+                <div class="flex-row fourth sort" data-sort="species"><b>Species</b></div>
+                <div class="flex-row fifth sort" data-sort="country"><b>Country</b></div>
+                <div class="flex-row sixth sort" data-sort="state"><b>State</b></div>
+                <div class="flex-row seventh sort" data-sort="county"><b>County</b></div>
+                <div class="flex-row eighth sort" data-sort="locality"><b>Locality</b></div>
+                <div class="flex-row ninth sort" data-sort="date"><b>Date</b></div>
+                <div class="flex-row tenth sort" data-sort="collector"><b>Collector(s)</b></div>
+                <div class="flex-row eleventh sort" data-sort="method"><b>Method</b></div>
+            </div>
+            <div class="list">
+                {% for specimenrecord in filter.qs %}
+                <div class="table-row">
+                    <div class="flex-row first usi"><a href="{% url 'specimen-detail' specimenrecord.usi %}">{{ specimenrecord.usi }}</a></div>
+                    <div class="flex-row second order">{{ specimenrecord.get_order }}</div>
+                    <div class="flex-row third family">{{ specimenrecord.get_family }}</div>
+                    <div class="flex-row fourth species">
+                        {% if specimenrecord.get_species %}
+                            <i><a href="{% url 'species-page' specimenrecord.species_page %}">{{ specimenrecord.get_genus }} {{ specimenrecord.get_species }}</a></i>
+                        {% else %}
+                            <i>{{ specimenrecord.get_genus }}</i>
+                        {% endif %}
+                    </div>
+                    <div class="flex-row fifth country">{{ specimenrecord.get_country }}</div>
+                    <div class="flex-row sixth state">{{ specimenrecord.get_state }}</div>
+                    <div class="flex-row seventh county">{{ specimenrecord.get_county }}</div>
+                    <div class="flex-row eighth locality">{{ specimenrecord.get_locality }}</div>
+                    <div class="flex-row ninth date">{{ specimenrecord.get_date }}</div>
+                    <div class="flex-row tenth collector">{{ specimenrecord.display_collector }}</div>
+                    <div class="flex-row eleventh method">{{ specimenrecord.method }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="pager">
+            <div class="previous"><a >‹‹ Previous</a></div>
+                <ul class="pagination"></ul>
+            <div class="next"><a >Next ››</a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

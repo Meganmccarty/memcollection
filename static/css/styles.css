@@ -1,0 +1,752 @@
+/* ---------- Basic CSS Stuff ---------- */
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+hr {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.page-title {
+    margin-top: 20px;
+}
+
+.section-title {
+    margin-top: 10px;
+}
+
+.subsection-title {
+    margin-top: 5px;
+}
+
+/* ---------- Navigation Bar ---------- */
+/*
+nav {
+    background: rgb(235,235,235);
+}
+
+nav > ul {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    justify-content: center;
+    padding: 0px;
+}
+
+nav > ul > li {
+    flex: 0 1 auto;
+    list-style: none;
+	margin: 0;
+	padding: 10px;
+	position: relative;
+	transition: all linear 0.1s;
+}
+
+nav > ul > li:hover {
+	background: rgb(220,220,220);
+}
+
+nav > ul > li > a,
+nav > ul > li > a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.google-search-box {
+    width: 300px;
+}
+*/
+.navbar {
+    background: rgb(235,235,235);
+}
+
+nav > div > ul > li:hover {
+    background: rgb(220,220,220);
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+    background-color: rgb(235,235,235);
+    bottom: 0;
+    height: 60px;
+    margin-top: 30px;
+    position: relative;
+    width: 100%;
+}
+
+.text-muted {
+    padding: 10px;
+}
+
+/* ---------- Home Page ---------- */
+
+#home-carousel {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 50%;
+}
+
+@media all and (max-width: 765px) {
+    #home-carousel {
+        width: 100%;
+    }
+}
+
+/* ---------- Contact Form (About Page) ---------- */
+
+.contact-box {
+    background-color: rgb(245,245,245);
+    border: 1px solid gray;
+    line-height: 10px;
+    margin: 0 auto;
+    padding: 10px;
+    width: 50%;
+}
+
+@media all and (max-width: 990px) {
+    .contact-box {
+        width: 100%;
+    }
+}
+
+/* ---------- Table of Contents ---------- */
+
+#contents {
+    background-color: rgb(245,245,245);
+    border: 1px solid gray;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    text-align: center;
+}
+
+/* ---------- Photo Cards ---------- */
+
+.cardContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+
+.smallCard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 5px;
+    width: 245px;
+}
+
+.mapCard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    width: 600px;
+}
+
+.extraLargeCard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    width: 900px;
+}
+
+div.smallCard:hover,
+div.mapCard:hover,
+div.extraLargeCard:hover {
+    box-shadow: 0 6px 10px 0 black;
+}
+
+.imageCard {
+    width: 100%;
+}
+
+.info {
+    padding: 5px;
+}
+
+/* ---------- Carousels ---------- */
+
+.carousel-item img {
+    width: 100%;
+}
+
+.carousel-caption {
+    color: black;
+    height: auto;
+    left: auto;
+    position: relative;
+    right: auto;
+}
+
+#speciespage-carousel,
+#collectingtrip-carousel {
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 75%;
+}
+
+@media all and (max-width: 765px) {
+    #speciespage-carousel,
+    #collectingtrip-carousel {
+        width: 100%;
+    }
+}
+
+/* ---------- Google Maps iframe ---------- */
+
+#google-map {
+    border: 1px solid gray;
+    height: 400px;
+    width: 100%;
+}
+
+/* ---------- Search, Toggle, and Sort Functions ---------- */
+
+input {
+    border: 1px solid rgb(204,204,204);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 7px 14px;
+}
+
+input:focus {
+    border: 1px solid rgb(185,185,185);
+    outline: none;
+}
+
+#search-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.search {
+    height: 40px;
+}
+
+.btn-primary {
+    height: 40px;
+}
+
+.sort:after {
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    content:"";
+    display:inline-block;
+    height: 0;
+    position: relative;
+    right:-5px;
+    top:-10px;
+    width: 0;
+}
+
+.sort.asc:after {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgb(255,255,255);
+    content:"";
+    height: 0;
+    position: relative;
+    right:-5px;
+    top:4px;
+    width: 0;
+}
+
+.sort.desc:after {
+    border-bottom: 5px solid rgb(255,255,255);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    content:"";
+    height: 0;
+    position: relative;
+    right:-5px;
+    top:-4px;
+    width: 0;
+}
+
+/* ---------- Flex Tables ---------- */
+
+.sortable {
+    font-size: 13px;
+}
+
+.table-container {
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 20px;
+}
+
+.flex-table {
+    border-bottom: 1px solid rgb(222,226,230);
+    border-top: 1px solid rgb(50,56,62);
+    display: block;
+    font-size: 13px;
+    max-width: 1400px;
+}
+
+.table-header {
+    background: rgb(33,37,41);
+    border-right: 1px solid rgb(50,56,62);
+    color: white;
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
+}
+
+.table-header .flex-row {
+    border-bottom: 1px solid rgb(50,56,62);
+    border-left: 1px solid rgb(50,56,62);
+    padding: 5px 5px 5px 5px;
+}
+
+.table-row {
+    border-right: 1px solid rgb(222,226,230);
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
+}
+
+.table-row:nth-child(odd) .flex-row {
+    background: rgb(242,242,242);
+}
+
+.table-row .flex-row {
+    border-left: 1px solid rgb(222,226,230);
+    border-top: 1px solid rgb(222,226,230);
+    padding: 5px 5px 5px 5px;
+}
+
+.fourth {
+    width: 10%;
+}
+
+.fifth,
+.eleventh {
+    width: 6.5%;
+}
+
+.sixth {
+    width: 5%;
+}
+
+.seventh,
+.tenth {
+    width: 9%;
+}
+
+.eighth {
+    width: 18%;
+}
+
+.ninth {
+    width: 8%;
+}
+
+@media all and (max-width: 1000px) {
+    .flex-table,
+    .sortable {
+        font-size: 14px;
+    }
+}
+
+@media all and (max-width: 775px) {
+    .table-container {
+        display: flex;
+        flex-flow: column;
+    }
+}
+
+@media all and (max-width: 510px) {
+    .flex-table,
+    .sortable {
+        font-size: 16px;
+    }
+}
+
+/* ---------- Flex Tables (Specimens) ---------- */
+
+#specimen-table .table-header .first,
+#specimen-table .table-row .first,
+#specimen-table .table-header .second,
+#specimen-table .table-row .second {
+    width: 9%;
+}
+
+#specimen-table .table-header .third,
+#specimen-table .table-row .third {
+    width: 10%;
+}
+
+@media all and (max-width: 1000px) {
+    #specimen-table .table-header .flex-row,
+    #specimen-table .table-row .flex-row {
+        width: calc(100% / 5);
+    }
+
+    #specimen-table .table-header .first,
+    #specimen-table .table-row .first {
+        width: 100%;
+    }
+}
+
+@media all and (max-width: 770px) {
+    #specimen-table .table-header,
+    #specimen-table .table-row {
+        font-size: 16px;
+    }
+}
+
+@media all and (max-width: 550px) {
+    #specimen-table .table-header,
+    #specimen-table .table-row {
+        font-size: 17px;
+    }
+
+    #specimen-table .table-header .flex-row,
+    #specimen-table .table-row .flex-row {
+        padding: 10px;
+        width: 100%;
+    }
+
+    #specimen-table .table-header .first,
+    #specimen-table .table-row .first {
+        width: 100%;
+    }
+}
+
+/* ---------- Flex Tables (Specimen Detail) ---------- */
+
+#specimen-detail-table,
+#collecting-event-table {
+    border-bottom: 0px;
+    margin: 5px 5px 5px 5px;
+}
+
+#specimen-detail-table .table-header,
+#collecting-event-table .table-header {
+    font-size: 20px;
+}
+
+#specimen-detail-table .table-row,
+#collecting-event-table .table-row {
+    font-size: 14px;
+}
+
+#specimen-detail-table .table-row .flex-row,
+#collecting-event-table .table-row .flex-row {
+    background: rgb(255,255,255);
+    border-bottom: 1px solid rgb(222,226,230);
+    border-top: 0px;
+}
+
+#specimen-detail-table .table-row .row-header,
+#collecting-event-table .table-row .row-header {
+    background: rgb(242,242,242);
+    border-bottom: 1px solid rgb(222,226,230);
+    border-top: 0px;
+}
+
+#specimen-detail-table .table-row .flex-row,
+#collecting-event-table .table-row .flex-row {
+    width: 65%;
+}
+
+#specimen-detail-table .table-row .row-header,
+#collecting-event-table .table-row .row-header {
+    width: 35%;
+}
+
+@media all and (max-width: 770px) {
+    #specimen-detail-table .table-row,
+    #collecting-event-table .table-row {
+        font-size: 16px;
+    }
+}
+
+@media all and (max-width: 550px) {
+    #specimen-detail-table .table-row,
+    #collecting-event-table .table-row {
+        font-size: 17px;
+    }
+
+    #specimen-detail-table .table-row .flex-row,
+    #collecting-event-table .table-row .flex-row {
+        padding: 10px;
+        width: 100%;
+    }
+}
+
+/* ---------- Flex Tables (Collecting Trip) ---------- */
+
+#collecting-trip-table .table-header,
+#collecting-trip-table .table-row {
+    font-size: 14px;
+    text-align: left;
+}
+
+#collecting-trip-table .flex-row {
+    padding: 10px;
+}
+
+#collecting-trip-table .table-header .flex-row,
+#collecting-trip-table .table-row .flex-row {
+    width: 25%;
+}
+
+#collecting-trip-table .table-header .first,
+#collecting-trip-table .table-row .first {
+    width: 50%;
+}
+
+@media all and (max-width: 770px) {
+    #collecting-trip-table .table-header,
+    #collecting-trip-table .table-row {
+        font-size: 16px;
+    }
+}
+
+@media all and (max-width: 550px) {
+    #collecting-trip-table .table-header,
+    #collecting-trip-table .table-row {
+        font-size: 17px;
+        text-align: center;
+    }
+
+    #collecting-trip-table .table-header .flex-row,
+    #collecting-trip-table .table-row .flex-row {
+        width: 50%;
+    }
+
+    #collecting-trip-table .table-header .first,
+    #collecting-trip-table .table-row .first {
+        width: 100%;
+    }
+}
+
+/* ---------- Flex Tables (Species Pages) ---------- */
+
+.species-page-table .table-header,
+.species-page-table .table-row {
+    font-size: 14px;
+    text-align: left;
+}
+
+.species-page-table .flex-row {
+    padding: 10px;
+}
+
+.species-page-table .table-header .first,
+.species-page-table .table-row .first {
+    width: 20%;
+}
+
+.species-page-table .table-header .second,
+.species-page-table .table-row .second,
+.species-page-table .table-header .third,
+.species-page-table .table-row .third {
+    width: 25%;
+}
+
+.species-page-table .table-header .fourth,
+.species-page-table .table-row .fourth,
+.species-page-table .table-header .fifth,
+.species-page-table .table-row .fifth {
+    width: 15%;
+}
+
+@media all and (max-width: 770px) {
+    .species-page-table .table-header,
+    .species-page-table .table-row {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .species-page-table .table-header .flex-row,
+    .species-page-table .table-row .flex-row {
+        width: 25%;
+    }
+
+    .species-page-table .table-header .first,
+    .species-page-table .table-row .first {
+        width: 100%;
+    }
+}
+
+@media all and (max-width: 550px) {
+    .species-page-table .table-header,
+    .species-page-table .table-row {
+        font-size: 17px;
+        text-align: center;
+    }
+
+    .species-page-table .table-header .flex-row,
+    .species-page-table .table-row .flex-row {
+        width: 100%;
+    }
+}
+
+/* ---------- Pagination Buttons ---------- */
+
+.pager {
+    display: flex;
+    flex-flow: row;
+    list-style: none;
+}
+
+.previous,
+.next {
+    background-color: white;
+    border: 1px solid rgb(204,204,204);
+    height: 35px;
+    margin: 1.5px;
+    padding-bottom: 2.5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2.5px;
+    text-align: center;
+    width: auto;
+}
+
+.pager .previous:hover, .pager .next:hover {
+    background-color: rgb(230,230,230);
+}
+
+.pagination li {
+    background-color: white;
+    border: 1px solid rgb(204,204,204);
+    height: 35px;
+    margin: 1.5px;
+    padding: 2.5px;
+    text-align: center;
+    width: 35px;
+}
+
+.pagination li a {
+    color: black;
+    text-decoration: none;
+}
+
+.pagination li:hover {
+    background-color: rgb(230,230,230);
+}
+
+/* ---------- Specimen Filter --------- */
+
+#specimenfilter {
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-row {
+    background-color: rgb(245,245,245);
+    border: 1px solid gray;
+    display: flex;
+    flex-flow: row wrap;
+    line-height: 10px;
+    padding: 10px;
+}
+
+.form-cell {
+    padding: 5px 5px 5px 5px;
+}
+
+#form-collector-box {
+    background-color: rgb(255,255,255);
+    border: 1px solid gray;
+    display: flex;
+    flex-flow: column wrap;
+    padding: 10px;
+    width: 35%;
+}
+
+#form-country,
+#form-state,
+#form-day,
+#form-year {
+    width: 10%;
+}
+
+#form-mona,
+#form-p3,
+#form-sex,
+#form-stage,
+#form-determined-year,
+#form-preparation,
+#form-preparation-date,
+#form-month {
+    width: 15%;
+}
+
+#form-usi,
+#form-order,
+#form-family,
+#form-subfamily,
+#form-tribe,
+#form-preparer,
+#form-county,
+#form-method,
+#form-weather,
+#form-temperatureC,
+#form-temperatureF,
+#form-time-of-day,
+#form-position {
+    width: 20%;
+}
+
+#form-genus,
+#form-species,
+#form-subspecies,
+#form-common-name,
+#form-determiner {
+    width: 25%;
+}
+
+#form-gps {
+    width: 30%;
+}
+
+#form-usi-image,
+#form-species-page {
+    width: 40%;
+}
+
+#form-collecting-trip,
+#form-habitat-notes,
+#form-other-notes {
+    width: 50%;
+}
+
+#form-locality {
+    width: 60%;
+}
+
+@media all and (max-width: 990px) {
+    #specimenfilter .form-row .form-cell {
+        width: calc(100% / 3);
+    }
+
+    #specimenfilter .form-row #form-collector-box {
+        width: calc(100% / 3);
+    }
+}
+
+@media all and (max-width: 765px) {
+    #specimenfilter .form-row .form-cell {
+        width: 100%;
+    }
+
+    #specimenfilter .form-row #form-collector-box {
+        width: 100%;
+    }
+}

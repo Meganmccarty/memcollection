@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+<head>
+    {% block title %}<title>Megan E. McCarty Collection – {{ collectingtrip.trip_name }}</title>{% endblock %}
+</head>
+
+{% block content %}
+<div class="container">
+    <h1 class="page-title">{{ collectingtrip.trip_name }}: {{ collectingtrip.start_date }} – {{ collectingtrip.end_date }}</h1>
+    <hr>
+    <div id="collectingtrip-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for copy in collectingtrip.collectingtripimage_set.all %}
+            <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                <img class="d-block w-100" src="{% thumbnail copy.image '1920' as im %}{{ im.url }}{% endthumbnail %}" alt=""
+                    srcset="{% thumbnail copy.image '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                        {% thumbnail copy.image '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                        {% thumbnail copy.image '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                        {% thumbnail copy.image '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                        {% thumbnail copy.image '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                    alt=""
+                    sizes="100vw"
+                />
+                <div class="carousel-caption">
+                    <p>{{ copy.caption }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#collectingtrip-carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#collectingtrip-carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    {% if collectingtrip.notes %}
+        <h3>Trip Log</h3>
+        {{ collectingtrip.notes | safe }}
+        <hr>
+    {% endif %}
+    <h3>Specimens Collected on this Trip</h3>
+    <div class="flex-table" id="specimen-table">
+        <div class="table-header">
+            <div class="flex-row first sort" data-sort="usi"><b>Specimen Identifer</b></div>
+            <div class="flex-row second sort" data-sort="order"><b>Order</b></div>
+            <div class="flex-row third sort" data-sort="family"><b>Family</b></div>
+            <div class="flex-row fourth sort" data-sort="species"><b>Species</b></div>
+            <div class="flex-row fifth sort" data-sort="country"><b>Country</b></div>
+            <div class="flex-row sixth sort" data-sort="state"><b>State</b></div>
+            <div class="flex-row seventh sort" data-sort="county"><b>County</b></div>
+            <div class="flex-row eighth sort" data-sort="locality"><b>Locality</b></div>
+            <div class="flex-row ninth sort" data-sort="date"><b>Date</b></div>
+            <div class="flex-row tenth sort" data-sort="collector"><b>Collector(s)</b></div>
+            <div class="flex-row eleventh sort" data-sort="method"><b>Method</b></div>
+        </div>
+        <div class="list">
+        {% for copy in collectingtrip.specimenrecord_set.all %}
+            <div class="table-row">
+                <div class="flex-row first usi"><a href="{% url 'specimen-detail' copy.usi %}">{{ copy.usi }}</a></div>
+                <div class="flex-row second order">{{ copy.get_order }}</div>
+                <div class="flex-row third family">{{ copy.get_family }}</div>
+                <div class="flex-row fourth species">
+                    {% if copy.get_species %}
+                        <i><a href="{% url 'species-page' copy.species_page %}">{{ copy.get_genus }} {{ copy.get_species }}</a></i>
+                    {% else %}
+                        <i>{{ specimenrecord.get_genus }}</i>
+                    {% endif %}
+                </div>
+                <div class="flex-row fifth country">{{ copy.get_country }}</div>
+                <div class="flex-row sixth state">{{ copy.get_state }}</div>
+                <div class="flex-row seventh county">{{ copy.get_county }}</div>
+                <div class="flex-row eighth locality">{{ copy.get_locality }}</div>
+                <div class="flex-row ninth date">{{ copy.get_date }}</div>
+                <div class="flex-row tenth collector">{{ copy.display_collector }}</div>
+                <div class="flex-row eleventh method">{{ copy.method }}</div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        <div class="cardContainer">
+        {% for copy in collectingtrip.specimenrecord_set.all %}
+            {% for copy in copy.specimenimage_set.all %}
+            <div class="smallCard">
+                <a href="{% url 'specimen-detail' copy.usi_image %}">
+                    <img class="imageCard" src="{% thumbnail copy.image '1920' as im %}{{ im.url }}{% endthumbnail %}" alt="{{ copy.usi_image }}"
+                        srcset="{% thumbnail copy.image '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                            {% thumbnail copy.image '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                        alt="{{ copy.usi_image }}"
+                        sizes="100vw"
+                    />
+                </a>
+                <div class="container">
+                    <div class="info">
+                        <center><a href="{% url 'specimen-detail' copy.usi_image %}">{{ copy.usi_image }}</a> ({{ copy.position }})</center>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

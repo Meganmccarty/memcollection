@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+<head>
+    {% block title %}<title>Megan E. McCarty Collection – About</title>{% endblock %}
+</head>
+
+{% block content %}
+<div class="container">
+    <h1 class="page-title">About</h1>
+    <hr>
+    <p>My fascination with the insect world started at the age of 2, where I was obsessed with ladybugs. I became interested in butterflies around the age of 10 and started my own collection. After attending my first Lepidopterists Society (LepSoc) meeting, where I was introduced to the wonderful world of moths, I was hooked on Lepidoptera. My passion for this insect order has only grown since.</p>
+    <p>While I hold a B.S. in Entomology from Purdue University, I have decided to keep my love of Lepidoptera as a hobby rather than a career, and instead go into web development. This is how this website was born.</p>
+    <p>I also have a website dedicated to my hobby of photography, which includes many photos of butterflies and other insects. You can view <a href="https://www.meganmccartyphotography.com">my photography website here</a>, where you can buy prints.</p>
+    <!--<h3>The Site</h3>
+    <p>This site was inspired by the beautiful <a href="http://pnwmoths.biol.wwu.edu/">Pacific Northwest Moths website</a>. The information on their <a href="http://pnwmoths.biol.wwu.edu/about-us/the-project/">project page</a> was invaluable in getting me started.</p>
+    <p>For those interested in creating a website like mine, I highly encourage you to read through the <a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django">Mozilla Developers Network</a> tutorial on creating a website powered by the Django framework. I'd also recommend you check out <a href="https://www.pythonanywhere.com">PythonAnywhere</a>, a place where you can host, run, and code python, all in the cloud. They made it extremely easy to deploy this site.</p>-->
+    <p>If you happen to find any errors, have comments, questions, or suggestions, please feel free to contact me using the form below.</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="contact-box">
+            {{ form.as_p }}
+            <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Send</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

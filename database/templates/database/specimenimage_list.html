@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+<head>
+    {% block title %}<title>Megan E. McCarty Collection – Specimen Images</title>{% endblock %}
+</head>
+
+{% block content %}
+<div class="container">
+    <br>
+    <h1>Specimen Images</h1>
+    <hr>
+    <br>
+    <div class="cardContainer">
+        {% for specimenimage in specimenimage_list %}
+        <div class="smallCard">
+            <a href="{% url 'specimen-detail' specimenimage.usi_image %}">
+                <img class="imageCard" src="{% thumbnail specimenimage.image '1920' as im %}{{ im.url }}{% endthumbnail %}" alt="{{ specimenimage.usi_image }}"
+                    srcset="{% thumbnail specimenimage.image '544' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                        {% thumbnail specimenimage.image '768' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                        {% thumbnail specimenimage.image '992' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                        {% thumbnail specimenimage.image '1200' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %},
+                        {% thumbnail specimenimage.image '1920' as im %}  {{ im.url }} {{ im.x }}w{% endthumbnail %}"
+                    alt="{{ specimenimage.usi_image }}"
+                    sizes="100vw"
+                />
+            </a>
+            <div class="container">
+                <div class="info">
+                    <center>
+                        <a href="{% url 'specimen-detail' specimenimage.usi_image %}">{{ specimenimage.usi_image }}</a> ({{ specimenimage.position}}) –
+                        <a href="{% url 'species-page' specimenimage.species_page %}"><i>{{ specimenimage.usi_image.genus }} {{ specimenimage.usi_image.species }}</i></a> ({{ specimenimage.usi_image.species.species_common_name }})
+                    </center>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% block pagination %}
+            {% if is_paginated %}
+            <div class="container">
+                <div class = "col-md-6">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1"><button class="previous">‹‹</button></a>
+                                <a href="?page={{ page_obj.previous_page_number }}"><button class="previous">‹</button></a>
+                            {% endif %}
+                        </li>
+
+                    {% for page in page_obj.paginator.page_range %}
+                        <li class="page-item">
+                            {% if page_obj.number == page %}
+                                <a class ="page_number" href="?page={{page}}"><button class="pg active">{{page}}</button></a>
+                            {% elif page > page_obj.number|add:'-5' and page < page_obj.number|add:'5' %}
+                                <a class ="page_number"href="?page={{page}}"><button class="pg">{{page}}</button></a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+
+                        <li class="page-item">
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}"><button class="next">›</button></a>
+                                <a href="?page={{ page_obj.paginator.num_pages }}"><button class="next">››</button></a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+        {% endblock %}
+    </div>
+</div>
+<br>
+<br>
+{% endblock %}
