@@ -94,11 +94,11 @@ WSGI_APPLICATION = 'meganemccartycollection.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mccartycollection',
+        'NAME': os.getenv("DATABASE_NAME"),
         'USER': os.getenv("DATABASE_USER"),
         'PASSWORD': os.getenv("DATABASE_PASSWORD"),
         'HOST': os.getenv("DATABASE_HOST"),
-        'PORT': 11330,
+        'PORT': os.getenv("DATABASE_PORT"),
     }
 }
 
