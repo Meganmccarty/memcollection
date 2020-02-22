@@ -20,7 +20,10 @@ class SpecimenRecordFilter(django_filters.FilterSet):
 
     class Meta:
         model = SpecimenRecord
-        fields = ['usi', 'order', 'family', 'subfamily', 'tribe', 'genus', 'species', 'subspecies', 'common_name', 'mona', 'p3', 'sex', 'stage', 'determiner', 'determined_year', 'preparer', 'preparation', 'preparation_date', 'collecting_trip', 'country', 'state', 'county', 'locality', 'gps', 'day', 'month', 'year', 'collector', 'method', 'weather', 'temperatureC', 'temperatureF', 'time_of_day', 'habitat_notes', 'other_notes']
+        fields = ['usi', 'order', 'family', 'subfamily', 'tribe', 'genus', 'species', 'subspecies', 'common_name', 'mona', 'p3', \
+            'sex', 'stage', 'determiner', 'determined_year', 'preparer', 'preparation', 'preparation_date', 'collecting_trip', \
+            'country', 'state', 'county', 'locality', 'gps', 'day', 'month', 'year', 'collector', 'method', 'weather', \
+            'temperatureC', 'temperatureF', 'time_of_day', 'habitat_notes', 'other_notes']
 
 class SpecimenImageFilter(django_filters.FilterSet):
     usi_image = django_filters.CharFilter(label='Specimen Identifier')
