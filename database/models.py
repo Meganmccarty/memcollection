@@ -345,7 +345,7 @@ class Gps(models.Model):
         help_text='Enter the latitude, in decimal degrees.')
     longitude = models.DecimalField(max_digits=12, decimal_places=8, null=True, blank=True, \
         help_text='Enter the longitute, in decimal degrees (use "-" instead of "W").')
-    elevation = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True, \
+    elevation = models.CharField(max_length=15, null=True, blank=True, \
         verbose_name = 'Elevation (meters)', help_text='Enter the elevation, in meters.')
     class Meta:
         ordering = ['latitude', 'longitude']
