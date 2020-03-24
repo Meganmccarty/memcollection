@@ -3,7 +3,9 @@
 {% load widget_tweaks %}
 
 <head>
-    {% block title %}<title>Megan E. McCarty Collection – Specimen Images</title>{% endblock %}
+    {% block title %}
+        <title>Megan E. McCarty Collection – Specimen Images</title>
+    {% endblock %}
 </head>
 
 {% block content %}
@@ -11,11 +13,19 @@
     <div class="container">
         <h1 class="page-title">Specimen Images</h1>
         <hr>
-        <p>Toggle the filter and use the fields to filter through all of the specimen images in the collection database. Specimen identifier numbers must be typed in exactly (no partial matches). Species names must include both genus and species name. The results will update below.</p>
-        <p>Use the search box to find something specific in the image captions. The results will update as you type.</p>
+        <p>
+            Toggle the filter and use the fields to filter through all of the specimen
+            images in the collection database. The results will update below.
+        </p>
+        <p>
+            Use the search box to find something specific in the image captions.
+            The results will update as you type.
+        </p>
         <div id="search-button">
             <input class="search" placeholder="Search" />
-            <button class="btn btn-primary" id="toggle-filter" type="button" data-toggle="collapse" data-target="#specimenfilter" aria-expanded="false" aria-controls="specimenfilter">
+            <button class="btn btn-primary" id="toggle-filter" type="button"
+                    data-toggle="collapse" data-target="#specimenfilter"
+                    aria-expanded="false" aria-controls="specimenfilter">
                 Toggle Filter
             </button>
         </div>
@@ -44,14 +54,23 @@
         {% for specimenimage in filter.qs %}
             <div class="smallCard">
                 <a href="{% url 'specimen-detail' specimenimage.usi_image %}">
-                    <img class="imageCard" src="{% thumbnail specimenimage.image '300' as im %}{{ im.url }}{% endthumbnail %}" alt="{{ specimenimage.usi_image }}"
+                    <img class="imageCard"
+                        src="{% thumbnail specimenimage.image '300' as im %}{{ im.url }}{% endthumbnail %}"
+                        alt="{{ specimenimage.usi_image }}"
                     />
                 </a>
                 <div class="container">
                     <div class="info name">
                         <center>
-                            <a href="{% url 'specimen-detail' specimenimage.usi_image %}">{{ specimenimage.usi_image }}</a> ({{ specimenimage.position}}) –
-                            <a href="{% url 'species-page' specimenimage.species_page %}"><i>{{ specimenimage.usi_image.genus }} {{ specimenimage.usi_image.species }}</i></a> ({{ specimenimage.usi_image.species.species_common_name }})
+                            <a href="{% url 'specimen-detail' specimenimage.usi_image %}">
+                                {{ specimenimage.usi_image }}
+                            </a> ({{ specimenimage.position}}) –
+                            <a href="{% url 'species-page' specimenimage.species_page %}">
+                                <i>
+                                    {{ specimenimage.usi_image.genus }}
+                                    {{ specimenimage.usi_image.species }}
+                                </i>
+                            </a> ({{ specimenimage.usi_image.species.species_common_name }})
                         </center>
                     </div>
                 </div>
@@ -64,5 +83,6 @@
             <div class="next"><a >Next ››</a></div>
         </div>
     <br>
+    </div>
 </div>
 {% endblock %}
