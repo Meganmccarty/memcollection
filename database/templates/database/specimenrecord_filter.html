@@ -113,9 +113,17 @@
                     {{ filter.form.locality.label_tag }}
                     {% render_field filter.form.locality class="form-control" %}
                 </div>
-                <div class="form-cell" id="form-gps">
-                    {{ filter.form.gps.label_tag }}
-                    {% render_field filter.form.gps class="form-control" %}
+                <div class="form-cell" id="form-latitude">
+                    {{ filter.form.gps_latitude.label_tag }}
+                    {% render_field filter.form.gps_latitude class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-longitude">
+                    {{ filter.form.gps_longitude.label_tag }}
+                    {% render_field filter.form.gps_longitude class="form-control" %}
+                </div>
+                <div class="form-cell" id="form-elevation">
+                    {{ filter.form.gps_elevation.label_tag }}
+                    {% render_field filter.form.gps_elevation class="form-control" %}
                 </div>
                 <div class="form-cell" id="form-day">
                     {{ filter.form.day.label_tag }}

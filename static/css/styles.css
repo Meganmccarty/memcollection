@@ -673,8 +673,9 @@ input:focus {
     border: 1px solid gray;
     display: flex;
     flex-flow: column wrap;
+    margin-bottom: 5px;
     padding: 10px;
-    width: 35%;
+    width: 60%;
 }
 
 #form-country,
@@ -691,7 +692,10 @@ input:focus {
 #form-determined-year,
 #form-preparation,
 #form-preparation-date,
-#form-month {
+#form-elevation,
+#form-month,
+#form-temperatureF,
+#form-time-of-day {
     width: 15%;
 }
 
@@ -705,8 +709,6 @@ input:focus {
 #form-method,
 #form-weather,
 #form-temperatureC,
-#form-temperatureF,
-#form-time-of-day,
 #form-position {
     width: 20%;
 }
@@ -715,7 +717,11 @@ input:focus {
 #form-species,
 #form-subspecies,
 #form-common-name,
-#form-determiner {
+#form-determiner,
+#form-latitude,
+#form-longitude,
+#form-habitat-notes,
+#form-other-notes {
     width: 25%;
 }
 
@@ -728,9 +734,7 @@ input:focus {
     width: 40%;
 }
 
-#form-collecting-trip,
-#form-habitat-notes,
-#form-other-notes {
+#form-collecting-trip {
     width: 50%;
 }
 
