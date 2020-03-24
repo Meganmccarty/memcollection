@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'widget_tweaks',
     'sorl.thumbnail',
+    'django_extensions',
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -133,7 +134,7 @@ LANGUAGES = [
 
 SITE_ID = 1
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Indiana/Vevay'
 
 USE_I18N = True
 
