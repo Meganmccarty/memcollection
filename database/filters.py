@@ -26,8 +26,8 @@ class SpecimenRecordFilter(django_filters.FilterSet):
             'temperatureC', 'temperatureF', 'time_of_day', 'habitat_notes', 'other_notes']
 
 class SpecimenImageFilter(django_filters.FilterSet):
-    usi_image = django_filters.CharFilter(label='Specimen Identifier')
-    species_page = django_filters.CharFilter(label='Species')
+    usi_image = django_filters.CharFilter(field_name='usi_image__usi', lookup_expr='icontains', label='Specimen Identifier')
+    species_page = django_filters.CharFilter(field_name='species_page__title', lookup_expr='icontains', label='Species')
 
     class Meta:
         model = SpecimenImage
