@@ -12,15 +12,17 @@
     <div class="flex-table" id="collecting-trip-table">
         <div class="table-header">
             <div class="flex-row first sort" data-sort="trip-name"><b>Trip Name</b></div>
-            <div class="flex-row second sort" data-sort="start-date"><b>Start Date</b></div>
-            <div class="flex-row third sort" data-sort="end-date"><b>End Date</b></div>
+            <div class="flex-row second sort" data-sort="states-collected"><b>States Collected</b></div>
+            <div class="flex-row third sort" data-sort="start-date"><b>Start Date</b></div>
+            <div class="flex-row fourth sort" data-sort="end-date"><b>End Date</b></div>
         </div>
         <div class="list">
             {% for collectingtrip in collectingtrip_list %}
             <div class="table-row">
                 <div class="flex-row first trip-name"><a href="{% url 'collecting-trip-detail' collectingtrip.trip_name %}">{{ collectingtrip.trip_name }}</a></a></div>
-                <div class="flex-row second start-date">{{ collectingtrip.start_date }}</div>
-                <div class="flex-row third end-date">{{ collectingtrip.end_date }}</div>
+                <div class="flex-row second states-collected">{{ collectingtrip.display_states }}</div>
+                <div class="flex-row third start-date">{{ collectingtrip.start_date }}</div>
+                <div class="flex-row fourth end-date">{{ collectingtrip.end_date }}</div>
             </div>
             {% endfor %}
         </div>

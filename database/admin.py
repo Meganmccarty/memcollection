@@ -156,9 +156,9 @@ class CollectingTripImageInline(admin.TabularInline):
 
 @admin.register(CollectingTrip)
 class CollectingTripAdmin(admin.ModelAdmin):
-    list_display = ('trip_name', 'start_date', 'end_date')
+    list_display = ('trip_name', 'display_states', 'start_date', 'end_date')
     inlines = [CollectingTripImageInline]
-    fields = ['trip_name', ('start_date', 'end_date'), 'notes']
+    fields = ['trip_name', 'states_collected', ('start_date', 'end_date'), 'notes']
 
 
 # SPECIMEN Models #

@@ -510,11 +510,6 @@ input:focus {
     width: 25%;
 }
 
-#collecting-trip-table .table-header .first,
-#collecting-trip-table .table-row .first {
-    width: 50%;
-}
-
 @media all and (max-width: 770px) {
     #collecting-trip-table .table-header,
     #collecting-trip-table .table-row {
@@ -529,14 +524,18 @@ input:focus {
         text-align: center;
     }
 
-    #collecting-trip-table .table-header .flex-row,
-    #collecting-trip-table .table-row .flex-row {
-        width: 50%;
-    }
-
     #collecting-trip-table .table-header .first,
     #collecting-trip-table .table-row .first {
         width: 100%;
+    }
+
+    #collecting-trip-table .table-header .second,
+    #collecting-trip-table .table-row .second,
+    #collecting-trip-table .table-header .third,
+    #collecting-trip-table .table-row .third,
+    #collecting-trip-table .table-header .fourth,
+    #collecting-trip-table .table-row .fourth {
+        width: calc(100% /3);
     }
 }
 

@@ -376,12 +376,17 @@ class Gps(models.Model):
 class CollectingTrip(models.Model):
     trip_name = models.CharField(primary_key=True, max_length=200, \
         help_text='Enter a name for the collecting trip.')
+    states_collected = models.ManyToManyField(State, default='', \
+        help_text='Select the states in which specimens were collected on the trip.')
     start_date = models.DateField(help_text='Enter the start date of the trip.')
     end_date = models.DateField(help_text='Enter the end date of the trip.')
     notes = models.TextField(null=True, blank=True, max_length=20000, \
         help_text='Enter any details about the trip (such as journal notes).')
     class Meta:
         ordering = ['trip_name']
+    @property
+    def display_states(self):
+        return ', '.join(state.state_name for state in self.states_collected.all()[:10])
     def __str__(self):
         return f'{self.trip_name}'
     def get_absolute_url(self):
