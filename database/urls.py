@@ -7,7 +7,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('success/', views.success, name='success'),
-    path('specimen-records/<str:pk>', views.SpecimenDetailView.as_view(), name='specimen-detail'),
+    path('specimen-records/<str:pk>', views.specimen_detail, name='specimen-detail'),
     path('specimen-records/', FilterView.as_view(filterset_class=SpecimenRecordFilter), name='specimen-records'),
     path('specimen-images/', FilterView.as_view(filterset_class=SpecimenImageFilter), name='specimen-images'),
     path('species/', views.SpeciesPageListView.as_view(), name='species'),

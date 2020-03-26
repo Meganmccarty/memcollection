@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.views.generic.base import TemplateView
 from database.models import SpecimenRecord, SpecimenImage, SpeciesPage, CollectingTrip
@@ -6,7 +6,6 @@ from .filters import SpecimenRecordFilter, SpecimenImageFilter
 
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
-from django.shortcuts import redirect
 from .forms import ContactForm
 from django.conf import settings
 
@@ -77,9 +76,21 @@ class SpecimenImagesListView(generic.ListView):
     paginate_by = 200
     template_name = 'database/templates/database/specimenimage_list.html'
 """
-
+"""
 class SpecimenDetailView(generic.DetailView):
     model = SpecimenRecord
+"""
+
+def specimen_detail(request, pk):
+    specimenrecord = get_object_or_404(SpecimenRecord, pk=pk)
+    google_maps_api = settings.GEOPOSITION_GOOGLE_MAPS_API_KEY
+
+    context = {
+        'specimenrecord': specimenrecord,
+        'google_maps_api': google_maps_api,
+    }
+
+    return render(request, 'database/specimenrecord_detail.html', context=context)
 
 class SpecimenRecordView(generic.ListView):
     model = SpecimenRecordFilter

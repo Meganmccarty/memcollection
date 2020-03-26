@@ -170,7 +170,7 @@
     </div>
     {% if specimenrecord.gps.latitude %}
         <div class="container">
-            <iframe id="google-map" defer src="https://www.google.com/maps/embed/v1/place?&q={{specimenrecord.gps.latitude}}%20{{specimenrecord.gps.longitude}}&key=AIzaSyCzgSeAAuz7Ac8VKaw2XbNKT5Gv8_BFulo" allowfullscreen></iframe>
+            <iframe id="google-map" defer src="https://www.google.com/maps/embed/v1/place?&q={{specimenrecord.gps.latitude}}%20{{specimenrecord.gps.longitude}}&key={{google_maps_api}}" allowfullscreen></iframe>
         </div>
     {% endif %}
 </div>
