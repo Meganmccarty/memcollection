@@ -173,11 +173,11 @@ class SpecimenImageInline(admin.TabularInline):
 
 @admin.register(SpecimenRecord)
 class SpecimenRecordAdmin(admin.ModelAdmin):
-    list_display = ('usi', 'order', 'family', 'subfamily', 'tribe', 'genus', 'species', 'subspecies', 'authority', 'common_name', 'mona', 'p3', 'species_page', 'determiner', 'determined_year', 'sex', 'stage', 'preparer', 'preparation', 'preparation_date', 'printed', 'labeled', 'photographed', 'collecting_trip', 'country', 'state', 'county', 'locality', 'gps', 'get_date', 'display_collector', 'method', 'weather', 'get_temperatureC', 'get_temperatureF', 'time_of_day', 'habitat_notes', 'other_notes')
+    list_display = ('usi', 'order', 'family', 'subfamily', 'tribe', 'genus', 'species', 'unidentified', 'subspecies', 'authority', 'common_name', 'mona', 'p3', 'species_page', 'determiner', 'determined_year', 'sex', 'stage', 'preparer', 'preparation', 'preparation_date', 'printed', 'labeled', 'photographed', 'collecting_trip', 'country', 'state', 'county', 'locality', 'gps', 'get_date', 'display_collector', 'method', 'weather', 'get_temperatureC', 'get_temperatureF', 'time_of_day', 'habitat_notes', 'other_notes')
     inlines = [SpecimenImageInline]
     fieldsets = (
         ('Specimen Details', {
-            'fields': ['usi', ('order', 'family', 'subfamily', 'tribe', 'genus', 'species', 'subspecies'), ('authority', 'common_name', 'mona', 'p3'), 'species_page', ('determiner', 'determined_year'), ('sex', 'stage'), ('preparer', 'preparation', 'preparation_date'), 'printed', 'labeled', 'photographed']
+            'fields': ['usi', ('order', 'family', 'subfamily', 'tribe', 'genus', 'species', 'subspecies'), ('authority', 'common_name', 'mona', 'p3'), 'species_page', ('determiner', 'determined_year'), ('sex', 'stage'), ('preparer', 'preparation', 'preparation_date'), 'printed', 'labeled', 'photographed', 'unidentified']
         }),
         ('Locality Details', {
             'fields': ['collecting_trip', ('country', 'state', 'county'), 'locality', 'gps', ('day', 'month', 'year'), 'collector', 'method', ('weather', 'temperatureC', 'temperatureF', 'time_of_day'), 'habitat_notes', 'other_notes']
