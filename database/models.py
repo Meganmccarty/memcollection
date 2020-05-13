@@ -506,6 +506,7 @@ class SpecimenRecord(models.Model):
     printed = models.BooleanField(verbose_name='Are the labels for the specimen printed?')
     labeled = models.BooleanField(verbose_name='Is the specimen labeled?')
     photographed = models.BooleanField(verbose_name='Is the specimen photographed?')
+    unidentified = models.BooleanField(verbose_name='Is the specimen unidentified to species?')
 #Locality Info
     collecting_trip = models.ForeignKey(CollectingTrip, on_delete=models.SET_NULL, null=True, blank=True, \
         help_text='Enter the name of the collecting trip on which the specimen was collected, if any.')
