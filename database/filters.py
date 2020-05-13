@@ -46,6 +46,7 @@ class SpecimenRecordFilter(django_filters.FilterSet):
     time_of_day = django_filters.CharFilter(lookup_expr='icontains', label='Time of day')
     habitat_notes = django_filters.CharFilter(lookup_expr='icontains', label='Habitat notes')
     other_notes = django_filters.CharFilter(lookup_expr='icontains', label='Other notes')
+    unidentified = django_filters.BooleanFilter(label='Unidentified to species', widget=forms.CheckboxInput)
 
     class Meta:
         model = SpecimenRecord

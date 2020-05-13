@@ -677,6 +677,17 @@ input:focus {
     width: 60%;
 }
 
+#form-unidentified-box {
+    background-color: rgb(255,255,255);
+    border: 1px solid gray;
+    display: flex;
+    flex-flow: column wrap;
+    margin-bottom: 5px;
+    padding: 10px;
+    width: 10%;
+}
+
+#form-unidentified,
 #form-country,
 #form-state,
 #form-day,
@@ -684,11 +695,12 @@ input:focus {
     width: 10%;
 }
 
+#form-determined-year,
 #form-mona,
 #form-p3,
+#form-determiner,
 #form-sex,
 #form-stage,
-#form-determined-year,
 #form-preparation,
 #form-preparation-date,
 #form-elevation,
@@ -716,7 +728,6 @@ input:focus {
 #form-species,
 #form-subspecies,
 #form-common-name,
-#form-determiner,
 #form-latitude,
 #form-longitude,
 #form-habitat-notes,

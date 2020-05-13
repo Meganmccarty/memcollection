@@ -122,8 +122,13 @@
                     <div class="flex-row">{{ specimenrecord.state.state_name }}</div>
                 {% endif %}
                 {% if specimenrecord.county %}
-                    <div class="flex-row row-header"><b>County</b></div>
-                    <div class="flex-row">{{ specimenrecord.county }}</div>
+                    {% if specimenrecord.county.state.state_name == 'Alaska' %}
+                        <div class="flex-row row-header"><b>Borough</b></div>
+                        <div class="flex-row">{{ specimenrecord.county }}</div>
+                    {% else %}
+                        <div class="flex-row row-header"><b>County</b></div>
+                        <div class="flex-row">{{ specimenrecord.county }}</div>
+                    {% endif %}
                 {% endif %}
                 {% if specimenrecord.locality %}
                     <div class="flex-row row-header"><b>Locality</b></div>
