@@ -92,9 +92,35 @@ def specimen_detail(request, pk):
 
     return render(request, 'database/specimenrecord_detail.html', context=context)
 
+"""
 class SpecimenRecordView(generic.ListView):
     model = SpecimenRecordFilter
     template_name = 'database/templates/database/specimenrecord_filter.html'
+"""
+def specimen_filter(request):
+    f = SpecimenRecordFilter(request.GET, queryset = SpecimenRecord.objects\
+                                    .select_related('order')\
+                                    .select_related('family')\
+                                    .select_related('subfamily')\
+                                    .select_related('tribe')\
+                                    .select_related('genus')\
+                                    .select_related('species')\
+                                    .select_related('subspecies')\
+                                    .select_related('authority')\
+                                    .select_related('common_name')\
+                                    .select_related('mona')\
+                                    .select_related('p3')\
+                                    .select_related('species_page')\
+                                    .select_related('determiner')\
+                                    .select_related('preparer')\
+                                    .select_related('collecting_trip')\
+                                    .select_related('country')\
+                                    .select_related('state')\
+                                    .select_related('county')\
+                                    .select_related('locality')\
+                                    .select_related('gps')\
+                                    .prefetch_related('collector').all())
+    return render(request, 'database/specimenrecord_filter.html', {'filter': f})
 
 class SpecimenImageView(generic.ListView):
     model = SpecimenImageFilter

@@ -24,8 +24,13 @@ class SpecimenRecordFilter(django_filters.FilterSet):
     mona = django_filters.CharFilter(field_name='mona__mona', lookup_expr='icontains',
                                         label="MONA #")
     p3 = django_filters.CharFilter(field_name='p3__p3', lookup_expr='icontains', label='P3 #')
+    determiner = django_filters.CharFilter(field_name='determiner__name', label='Determiner')
     determined_year = django_filters.CharFilter(lookup_expr='icontains', label='Determined year')
+    preparer = django_filters.CharFilter(field_name='preparer__name', label='Preparer')
     preparation_date = django_filters.DateFilter(lookup_expr='icontains', label='Preparation date')
+    collecting_trip = django_filters.CharFilter(field_name='collecting_trip__trip_name', label='Collecting Trip')
+    country = django_filters.CharFilter(field_name='country__country_name', label='Country')
+    state = django_filters.CharFilter(field_name='state__state_name', label='State')
     county = django_filters.CharFilter(field_name='county__county_name', lookup_expr='icontains',
                                         label='County')
     locality = django_filters.CharFilter(field_name='locality__locality_name',
